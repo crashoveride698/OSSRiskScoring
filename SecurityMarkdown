@@ -1,0 +1,24 @@
+import os
+
+# Set the directory to scan
+repo_dir = './repository'
+
+# Set the directories to search for the security policy
+directories = ['.', 'docs', 'doc']
+
+# Iterate over the directories and check for the security policy file
+for directory in directories:
+    # Get the full path to the directory
+    dir_path = os.path.join(repo_dir, directory)
+
+    # Check if the directory exists
+    if os.path.isdir(dir_path):
+        # Get a list of all files in the directory
+        files = os.listdir(dir_path)
+
+        # Iterate over the files and check for the security policy file
+        for file in files:
+            # Check if the file is named "SECURITY.md" (case-insensitive)
+            if file.lower() == 'security.md':
+                print('Security policy found at: ' + os.path.join(dir_path, file))
+                break
