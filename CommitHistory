@@ -1,0 +1,30 @@
+import os
+import subprocess
+
+# Set the repository URL
+repo_url = 'https://github.com/user/repository.git'
+
+# Clone the repository
+subprocess.run(['git', 'clone', repo_url])
+
+# Set the repository directory
+repo_dir = './repository'
+
+# Check the number of commits in the repository's commit history
+result = subprocess.run(['git', 'rev-list', '--count', 'HEAD'], cwd=repo_dir, stdout=subprocess.PIPE)
+commit_count = int(result.stdout)
+
+print('Number of commits: ' + str(commit_count))
+
+# Determine the level of activity based on the number of commits
+if commit_count == 0:
+    print('Repository is inactive')
+elif commit_count > 0 and commit_count <= 10:
+    print('Repository has low activity')
+elif commit_count > 10 and commit_count <= 100:
+    print('Repository has moderate activity')
+else:
+    print('Repository has high activity')
+
+# Clean up
+os.rmdir(repo_dir)
