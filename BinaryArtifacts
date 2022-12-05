@@ -1,0 +1,16 @@
+import os
+
+# Set the directory to scan
+repo_dir = './repository'
+
+# Get a list of all files in the repository
+files = os.listdir(repo_dir)
+
+# Iterate over the files and check if they are binary executables
+for file in files:
+    # Get the full path to the file
+    file_path = os.path.join(repo_dir, file)
+
+    # Check if the file is a binary executable
+    if os.access(file_path, os.X_OK):
+        print(file_path + ' is a binary executable')
